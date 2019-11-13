@@ -1,4 +1,4 @@
-package a_ioc;
+package a.ioc;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

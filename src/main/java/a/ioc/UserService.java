@@ -1,4 +1,4 @@
-package a_ioc;
+package a.ioc;
 
 public interface UserService {
     void addUser();

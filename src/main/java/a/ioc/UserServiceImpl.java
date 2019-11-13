@@ -1,5 +1,8 @@
-package a_ioc;
+package a.ioc;
 
+/**
+ * @author chang
+ */
 public class UserServiceImpl implements UserService {
 
     public void addUser() {
