@@ -1,5 +1,7 @@
-package b.di;
+package c.inject.b_static_factory;
 
+import b.di.BookService;
+import b.di.BookServiceImpl;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -7,23 +9,19 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
-public class TestDI {
+public class TestFactory {
     @Test
     public void demo01(){
-        //启动就会创建
+        //spring静态工厂
         String xmlPath = "applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
-        BookServiceImpl bookService = (BookServiceImpl) applicationContext.getBean("bookServiceId");
-        bookService.addBook();
+        UserService userService = applicationContext.getBean("userServiceIdFactory", UserService.class);
+        userService.addUser();
     }
 
     @Test
     public void demo02(){
-        //使用BeanFactory  --第一次条用getBean实例化
-        String xmlPath = "applicationContext.xml";
-        BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(xmlPath));
-        BookService bookService = (BookService) beanFactory.getBean("bookServiceId");
-        bookService.addBook();
 
     }
+
 }
