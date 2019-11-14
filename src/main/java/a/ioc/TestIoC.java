@@ -12,6 +12,8 @@ public class TestIoC {
         ApplicationContext applicationContext =  new ClassPathXmlApplicationContext(xmlPath);
         //2获取内容
         UserService userService = (UserService) applicationContext.getBean("userServiceId");
+        //默认单例模式
+        UserService userService1 = (UserService) applicationContext.getBean("userServiceId");
         userService.addUser();
     }
 

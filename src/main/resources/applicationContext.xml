@@ -7,6 +7,7 @@
         <bean> 配置需要创建的对象
             id ：用于之后从spring容器获得实例时使用的
             class ：需要创建实例的全限定类名
+             scope="prototype"(不是必须)，每次get创建一个新的bean
          <property> 用于进行属性注入
 			name： bean的属性名，通过setter方法获得
 				setBookDao ##> BookDao  ##> bookDao
@@ -18,15 +19,20 @@
 	-->
 
 
-    <bean id="userServiceId" class="a.ioc.UserServiceImpl"></bean>
+    <bean id="userServiceId" class="a.ioc.UserServiceImpl" scope="prototype"></bean>
 
     <bean id="bookServiceId" class="b.di.BookServiceImpl">
         <property name="bookDao" ref="bookDaoId"></property>
     </bean>
     <bean id="bookDaoId" class="b.di.BookDaoImpl"></bean>
 
-    <!--<bean id="userServiceIdFactory" class="c.inject.b_static_factory.MyBeanFactory"
-        factory-method="createService"></bean>-->
+    <bean id="userServiceIdFactory" class="c.inject.b_static_factory.MyBeanFactory"
+        factory-method="createService"></bean>
     <bean id="userServiceIdFactory2" class="c.inject.c_factory.MyBeanFactory"></bean>
+    <!-- 获得userservice
+		* factory-bean 确定工厂实例
+		* factory-method 确定普通方法
+	-->
+
     <bean id="userServiceByFactory" factory-bean="userServiceIdFactory2" factory-method="createService"></bean>
 </beans>

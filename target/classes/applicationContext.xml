@@ -18,15 +18,20 @@
 	-->
 
 
-    <bean id="userServiceId" class="a.ioc.UserServiceImpl"></bean>
+    <bean id="userServiceId" class="a.ioc.UserServiceImpl" scope="prototype"></bean>
 
     <bean id="bookServiceId" class="b.di.BookServiceImpl">
         <property name="bookDao" ref="bookDaoId"></property>
     </bean>
     <bean id="bookDaoId" class="b.di.BookDaoImpl"></bean>
 
-    <!--<bean id="userServiceIdFactory" class="c.inject.b_static_factory.MyBeanFactory"
-        factory-method="createService"></bean>-->
+    <bean id="userServiceIdFactory" class="c.inject.b_static_factory.MyBeanFactory"
+        factory-method="createService"></bean>
     <bean id="userServiceIdFactory2" class="c.inject.c_factory.MyBeanFactory"></bean>
+    <!-- 获得userservice
+		* factory-bean 确定工厂实例
+		* factory-method 确定普通方法
+	-->
+
     <bean id="userServiceByFactory" factory-bean="userServiceIdFactory2" factory-method="createService"></bean>
 </beans>
