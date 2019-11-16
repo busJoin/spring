@@ -16,6 +16,5 @@ public class TestBean {
         Person personId = applicationContext.getBean("personId", Person.class);
         System.out.println(userId);
         System.out.println(personId);
-
     }
 }
