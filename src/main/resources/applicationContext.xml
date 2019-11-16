@@ -19,6 +19,39 @@
 		class 确定静态工厂全限定类名
 		factory-method 确定静态方法名
 	-->
+ <!--   <constructor-arg> 用于配置构造方法一个参数argument
+    name ：参数的名称
+    value：设置普通数据
+    ref：引用数据，一般是另一个bean id值
+
+    index ：参数的索引号，从0开始 。如果只有索引，匹配到了多个构造方法时，默认使用第一个。
+    type ：确定参数类型
+    例如：使用名称name
+    <constructor-arg name="username" value="jack"></constructor-arg>
+    <constructor-arg name="age" value="18"></constructor-arg>
+    例如2：【类型type 和  索引 index】
+    <constructor-arg index="0" type="java.lang.String" value="1"></constructor-arg>
+    <constructor-arg index="1" type="java.lang.Integer" value="2"></constructor-arg>
+-->
+    <!-- setter方法注入
+		* 普通数据
+			<property name="" value="值">
+			等效
+			<property name="">
+				<value>值
+		* 引用数据
+			<property name="" ref="另一个bean">
+			等效
+			<property name="">
+				<ref bean="另一个bean"/>
+	-->
+
+    <bean id="personId" class="d.bean.Person">
+        <property name="companyAddrId" value="北京"></property>
+        <property name="homeAddr">
+            <value>加</value>
+        </property>
+    </bean>
 
 
     <bean id="userServiceId" class="a.ioc.UserServiceImpl" scope="prototype"></bean>
@@ -28,13 +61,20 @@
     </bean>
     <bean id="bookDaoId" class="b.di.BookDaoImpl" init-method="myInit" destroy-method="myDestory"></bean>
 
-    <bean id="userServiceIdFactory" class="c.inject.b_static_factory.MyBeanFactory"
+    <!--<bean id="userServiceIdFactory" class="c.inject.b_static_factory.MyBeanFactory"
         factory-method="createService"></bean>
     <bean id="userServiceIdFactory2" class="c.inject.c_factory.MyBeanFactory"></bean>
-    <!-- 获得userservice
+    &lt;!&ndash; 获得userservice
 		* factory-bean 确定工厂实例
 		* factory-method 确定普通方法
-	-->
+	&ndash;&gt;
 
     <bean id="userServiceByFactory" factory-bean="userServiceIdFactory2" factory-method="createService"></bean>
+-->
+    <bean class="d.bean.MyBeanPostProcessor" ></bean>
+
+    <bean id="userId" class="d.bean.User">
+        <constructor-arg index="0" type="java.lang.String" value="1"></constructor-arg>
+        <constructor-arg index="1" type="java.lang.Integer" value="2"></constructor-arg>
+    </bean>
 </beans>
