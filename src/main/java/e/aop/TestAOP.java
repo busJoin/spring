@@ -9,4 +9,14 @@ public class TestAOP {
         userService.addUser();
         userService.updateUser();
     }
+
+    /**
+     * cglib
+     */
+    @Test
+    public void demo02(){
+        UserServiceImpl userService = MyBeanFacotry.createService1();
+        userService.addUser();
+        userService.updateUser();
+    }
 }
